@@ -1,0 +1,6 @@
+---
+# tasks file for system
+- name: update system
+  yum:
+        name: "{{ package_name }}"
+        state: "{{ package_state }}"

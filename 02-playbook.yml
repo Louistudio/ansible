@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  ignore_errors: true
+  tasks:
+    - name: Create list of groups
+      group:
+        state: absent
+        name:  "{{item}}"
+      loop:
+          - cloud
+          - security
+          - devops
+          - linuxsa

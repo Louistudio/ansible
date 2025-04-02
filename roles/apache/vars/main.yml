@@ -1,0 +1,5 @@
+---
+# vars file for apache
+pkg_name: httpd
+app_name: utc-apc
+  

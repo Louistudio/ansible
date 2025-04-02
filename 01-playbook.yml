@@ -1,0 +1,50 @@
+---
+- hosts: ws
+  become: yes
+  become_user: root
+  vars:
+    pkg: httpd
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: install package from file
+      package: 
+        name: "{{p_name}}"
+        state: present
+      tags:
+        - package
+    - name: install package
+      yum: 
+        name: "{{pkg}}"
+        state: present
+    - name: create a file
+      file:
+        path: /tmp/ansible1.txt 
+        state: touch
+    - name: add content to my file
+      copy:
+        dest: /tmp/ansible1.txt 
+        content: >
+          #######################
+          this is ansible at work
+          #######################
+    - name: create a file
+      file:
+        path: /tmp/automation.log
+        state: directory
+    - name: create group cloud
+      group:
+        name: Cloud
+        state: present
+    - name: create user
+      user: 
+        name: u5bt
+        comment: johnny admin
+        group: Cloud
+    - name: check cpu
+      command: nproc
+    - name: check os version
+      shell: cat /etc/passwd | grep root
+
+

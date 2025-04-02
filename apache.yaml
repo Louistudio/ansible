@@ -1,0 +1,40 @@
+---
+- hosts: ws
+  become: true
+  vars: 
+    pkg_name: httpd
+    app_name: utc-apc
+  
+  tasks:
+    - name: update system
+      yum:
+        name: "*"
+        state: latest
+    - name: create folders for app
+      file:
+        state: directory
+        path: "{{ item }}"
+      loop:
+        - /opt/{{ app_name }}
+        - /opt/{{ app_name }}/log
+        - /opt/{{ app_name }}/deploy
+    - name: 
+      yum:
+        name: httpd
+        state: present
+    - name: start daemon
+      service:
+        name: httpd
+        state: started
+    - name: copy index to target
+      template:
+        src: index.j2
+        dest: /var/www/html/index.html
+      notify: restart apache
+  handlers: 
+      - name: restart apache
+        service:
+          name: httpd
+          state: restarted
+
+

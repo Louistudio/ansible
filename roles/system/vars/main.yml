@@ -1,0 +1,4 @@
+---
+# vars file for system
+package_name: "*"
+package_state: latest

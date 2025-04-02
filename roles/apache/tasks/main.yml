@@ -1,0 +1,25 @@
+---
+# tasks file for apache
+- name: install apache
+  yum:
+    name: httpd
+    state: present
+- name: start daemon
+  service:
+    name: httpd
+    state: started
+
+- name: create folders for app
+  file:
+        state: directory
+        path: "{{ item }}"
+  loop:
+        - /opt/{{ app_name }}
+        - /opt/{{ app_name }}/log
+        - /opt/{{ app_name }}/deploy
+
+- name: copy index to target
+  template:
+        src: index.j2
+        dest: /var/www/html/index.html
+  notify: restart apache

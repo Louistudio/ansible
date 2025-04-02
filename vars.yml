@@ -1,0 +1,18 @@
+---
+package_list:
+  - wget
+  - curl
+  - httpd
+  - docker
+
+group_list:
+  - florida
+  - georgia
+  - maryland
+  - virginia
+
+user_list:
+  - robertine
+  - johnny
+  - jean
+  - john

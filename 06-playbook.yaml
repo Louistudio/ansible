@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: true
+  ignore_errors: true
+  tasks:
+
+    - name: download package
+      get_url:
+        url: https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.14.tar.xz
+        mode: '0644'
+        dest: /tmp
+    - name: check if file exist
+      stat:
+        path: /tmp/linux-6.14.tar.xz
+      register: file_info
+    - name: display file file
+      debug:
+        var: file_info.stat.exists
+    - name: unarchive file
+      unarchive:
+        src: /tmp/linux-6.14.tar.xz
+        dest: /tmp
+        remote_src: yes
+      when: file_info.stat.exists == true
+    - name: Remove archive after extraction
+      file:
+       path: /tmp/package.tar.gz
+       state: absent

@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+    - name: create ec2 instance
+      ec2_instance:
+        name: server-from-ansible
+        instance_type: t2.micro
+        image_id: ami-02f624c08a83ca16f
+        region: us-east-1
+        state: absent

@@ -1,0 +1,11 @@
+node1
+"ansible_distribution": "Amazon"
+"ansible_os_family": "RedHat"
+"ansible_pkg_mgr": "yum"
+"ansible_processor_cores": 1
+
+node2
+"ansible_distribution": "Ubuntu"
+"ansible_os_family": "Debian"
+"ansible_pkg_mgr": "apt"
+"ansible_processor_cores": 1
