@@ -13,6 +13,13 @@ pipeline{
             steps{
                 sh 'whoami'
             }
+        stage('github'){
+            steps{
+                git branch: 'main'
+                url: 'git@github.com:Louistudio/ansible.git'
+            }
+
+        }
         }
     }
 }
