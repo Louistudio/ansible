@@ -1,13 +1,15 @@
 pipeline{
-    agent ansible
+    agent {
+        label 'ansible'
+    }
     stages{
-        stage('git checkout'){
+        /*stage('git checkout'){
             steps{
                 git branch: 'main'
                 url: 'git@github.com:Louistudio/ansible.git'
             }
-        }
-        stage{
+        }*/
+        stage('check'){
             steps{
                 sh 'whoami'
             }
