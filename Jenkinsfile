@@ -10,7 +10,7 @@ pipeline{
         }
         stage('ansible'){
             steps{
-                sh 'ansible-playbook 05-playbook.yml'
+                sh 'ansible-playbook role_test.yaml'
             }
         }
         /*stage('github'){
