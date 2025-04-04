@@ -3,23 +3,24 @@ pipeline{
         label 'ansible'
     }
     stages{
-        /*stage('git checkout'){
-            steps{
-                git branch: 'main'
-                url: 'git@github.com:Louistudio/ansible.git'
-            }
-        }*/
         stage('check'){
             steps{
                 sh 'whoami'
             }
-        stage('github'){
+        }
+        stage('ansible'){
             steps{
-                git branch: 'main'
-                url: 'git@github.com:Louistudio/ansible.git'
+                sh 'ansible-playbook 05-playbook.yml'
+            }
+        }
+        /*stage('github'){
+            steps{
+                git 
+                    branch: 'main'
+                    url: 'git@github.com:Louistudio/ansible.git'
             }
 
         }
-        }
+        }*/
     }
 }
